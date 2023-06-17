@@ -1,15 +1,27 @@
-import { App } from "./App";
-import { Login } from "./pages/login";
-import { Register } from "./pages/register";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Paths } from "../paths";
+import { Provider } from "react-redux";
+import { Suspense, lazy } from "react";
+import store from "./store";
+
+const Home = lazy(() => import("./pages/home"));
+const Cart = lazy(() => import("./pages/cart"));
+const Login = lazy(() => import("./pages/login"));
+const Register = lazy(() => import("./pages/register"));
 
 const router = createBrowserRouter([
-  { path: Paths.home, element: <App /> },
-  { path: Paths.login, element: <Login /> },
-  { path: Paths.register, element: <Register /> },
+	{ path: Paths.home, element: <Home /> },
+	{ path: Paths.login, element: <Login /> },
+	{ path: Paths.register, element: <Register /> },
+	{ path: Paths.cart, element: <Cart /> },
 ]);
 
 const root = createRoot(document.getElementById("root") as HTMLElement);
-root.render(<RouterProvider router={router} />);
+root.render(
+	<Suspense fallback={<>Loading</>}>
+		<Provider store={store}>
+			<RouterProvider router={router} />
+		</Provider>
+	</Suspense>
+);
