@@ -1,7 +1,7 @@
 import React from "react";
 import { Layout, Space } from "antd";
 import { ShoppingCartOutlined, HomeOutlined } from "@ant-design/icons";
-import style from "./index.module.css";
+import "./index.css";
 import { Link } from "react-router-dom";
 import { Paths } from "../../../paths";
 
@@ -10,10 +10,10 @@ export const Header = () => {
 		<Layout.Header>
 			<Space>
 				<Link to={Paths.home}>
-					<HomeOutlined className={style.teamIcon} />
+					<HomeOutlined className="teamIcon" />
 				</Link>
 				<Link to={Paths.cart}>
-					<ShoppingCartOutlined className={style.teamIcon} />
+					<ShoppingCartOutlined className="teamIcon" />
 				</Link>
 			</Space>
 			{/* <Space>
